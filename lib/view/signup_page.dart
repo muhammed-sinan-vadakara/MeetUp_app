@@ -6,17 +6,19 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meetup_app/widgets/auth_elevatedbutton_widget.dart';
 import 'package:meetup_app/widgets/elevator__button_widget.dart';
 import 'package:meetup_app/widgets/form_text_field_widget.dart';
-import 'package:meetup_app/widgets/password_form_text_field_widget.dart';
+import 'package:meetup_app/widgets/text_field_widget.dart';
 
-class LoginPage extends HookConsumerWidget {
-  static const routePath = '/login';
-  const LoginPage({super.key});
+class SignupPage extends HookConsumerWidget {
+  static const routePath = '/signup';
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final _formKey = GlobalKey<FormState>();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
+    final nameController = TextEditingController();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -25,7 +27,7 @@ class LoginPage extends HookConsumerWidget {
             child: Text(
               "STORE ADMIN APP",
               style: TextStyle(
-                color: Colors.grey,
+                color: Colors.black,
                 fontSize: 24,
               ),
             ),
@@ -41,7 +43,7 @@ class LoginPage extends HookConsumerWidget {
                 children: [
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(16),
                       child: SizedBox(
                           height: 150,
                           width: 300,
@@ -51,8 +53,26 @@ class LoginPage extends HookConsumerWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 56,
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Text(
+                      "NAME",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  TextFieldWidget(
+                      hinttText: "NAME",
+                      keyboardtype: TextInputType.name,
+                      prefixxIcon: Icon(
+                        Icons.person_outline_outlined,
+                        color: Colors.blue,
+                      ),
+                      controller: nameController),
                   SizedBox(
                     height: 16,
                   ),
@@ -88,7 +108,7 @@ class LoginPage extends HookConsumerWidget {
                       ),
                       controller: emailController),
                   SizedBox(
-                    height: 24,
+                    height: 16,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 16),
@@ -100,7 +120,7 @@ class LoginPage extends HookConsumerWidget {
                   SizedBox(
                     height: 12,
                   ),
-                  PasswordFormTextFieldWidget(
+                  FormTextFieldWidget(
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Enter Password";
@@ -110,13 +130,30 @@ class LoginPage extends HookConsumerWidget {
                       },
                       hinttText: "PASSWORD",
                       keyboardtype: TextInputType.number,
+                      prefixxIcon: Icon(
+                        Icons.remove_red_eye_outlined,
+                        color: Colors.blue,
+                      ),
                       controller: passwordController),
                   SizedBox(
                     height: 32,
                   ),
-                  ElevatedButtonWidget(text: "Login ", onPressed: () {}
-
+                  ElevatedButtonWidget(
+                      text: "SIGN UP",
+                      onPressed: () {
+                        // if (_formKey.currentState!.validate()) {
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     const SnackBar(content: Text('Processing Data')),
+                        //   );
+                        // } else {
+                        //   ref.read(authenticationProvider.notifier).signup(
+                        //       context,
+                        //       emailController.text,
+                        //       passwordController.text);
+                        // }
+                      }
                       // =>
+
                       ),
                   SizedBox(
                     height: 12,
@@ -141,23 +178,23 @@ class LoginPage extends HookConsumerWidget {
                       ],
                     ),
                     onPressed: () {},
-                    //  () => ref
+                    // => ref
                     //     .read(authenticationProvider.notifier)
                     //     .googleverification(context),
                     colours: Colors.grey,
                   ),
                   SizedBox(
-                    height: 12,
+                    height: 4,
                   ),
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Do not have an account . Please"),
+                        Text("Already have an account . Please"),
                         TextButton(
                           onPressed: () {},
-                          // () => context.go(SignupPage.routePath),
+                          // => context.go(LoginPage.routePath),
                           child: Container(
                               decoration: BoxDecoration(
                                   border:
@@ -167,10 +204,13 @@ class LoginPage extends HookConsumerWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(6.0),
                                 child: Text(
-                                  "SignUp",
+                                  "Login",
                                   style: TextStyle(color: Colors.blue),
                                 ),
                               )),
+                        ),
+                        SizedBox(
+                          height: 20,
                         ),
                       ],
                     ),
