@@ -42,6 +42,8 @@ dependencies:
   riverpod_annotation: ^2.3.5
   flutter_riverpod: ^2.5.1
   firebase_auth: ^4.19.3
+  google_sign_in: ^6.2.1
+  zego_uikit_prebuilt_call: ^4.9.0
 
 dev_dependencies:
   flutter_test:

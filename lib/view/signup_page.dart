@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:meetup_app/widgets/auth_elevatedbutton_widget.dart';
-import 'package:meetup_app/widgets/elevator__button_widget.dart';
 import 'package:meetup_app/widgets/form_text_field_widget.dart';
-import 'package:meetup_app/widgets/text_field_widget.dart';
+import 'package:meetup_app/widgets/textfield_widget.dart';
 
 class SignupPage extends HookConsumerWidget {
   static const routePath = '/signup';
